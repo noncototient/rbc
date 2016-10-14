@@ -39,6 +39,7 @@
 
 							<transition name="component-fade" mode="out-in">
 							<customer-details :is="current" v-if="searched" v-on:confirm="update" :customer="customer"></customer-details>
+							<order-details ></order-details>
 							</transition>
 						</div>
 					</form>

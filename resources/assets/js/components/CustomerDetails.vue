@@ -1,5 +1,5 @@
 <template>
-    <form id="customerDetails" name="input" action="#" method="get">
+    <div>
         <label class="label">Customer's Details</label>
         <div class="control is-horizonal">
             <div class="control is-grouped">
@@ -48,7 +48,7 @@
                 </span>
             </button>
         </div>
-    </form>
+    </div>
 </template>
 
 <script>
