@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Item;
 use App\Customer;
 
 use App\Http\Requests;
@@ -11,25 +12,29 @@ class ApiSearchController extends Controller
 {
     // Search for a customer
     public function searchCustomer(Request $request){
-    	// Declare error message
-    	$customerNotFoundMessage = ['error' => 'Customer with this phone number does not exist. Please fill in their details or try a different phone number.'];
 
-    	// Check if phone number was sent
-    	if(!$request->has('q')){
-    		// Display generic error
-    		return 'You should just give up and quit and never start this again.';
-    	}
+        // Retrieve phone number
+        $phone = $request->get('phone');
 
-    	// Retrieve the phone number
-    	$phone = $request->get('q');
+        // Search for customer with provided phone number
+        $customer = Customer::where('phone', $phone)->first();
 
-    	// Search for a customer with this phone number
-    	$customerDetails = Customer::where('phone', $phone)->first();
+        $success = ['success' => 'Customer found. Confirm their details below to continue.', 'customer' => $customer];
 
-    	$customer = ['customer' => $customerDetails, 'success' => 'Customer found. Please confirm their details and click continue.'];
+        $error = ['error' => 'Sorry, no customer found with provided phone number. Please fill in their details to continue.'];
 
-    	// Return customer if found, or error otherwise
-    	return $customerDetails ? $customer : $customerNotFoundMessage;
-    	
+        // Return results
+        return $customer ? $success : $error;
+
+    }
+
+    public function searchItems(Request $request){
+
+        $name = $request->get('item');
+
+        $items = Item::where('name', 'LIKE', '%' . $name . '%')->get();
+
+        return $items;
+
     }
 }

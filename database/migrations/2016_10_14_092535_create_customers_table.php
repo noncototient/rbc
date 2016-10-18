@@ -21,6 +21,10 @@ class CreateCustomersTable extends Migration
             $table->string('phone');
             $table->string('email');
 
+            $table->string('card_number');
+            $table->string('exp_date');
+            $table->string('cvc');
+
             $table->string('street');
             $table->string('suburb');
             $table->string('city');

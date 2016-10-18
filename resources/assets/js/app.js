@@ -13,53 +13,32 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('customer-details', require('./components/CustomerDetails.vue'));
-Vue.component('order-details', require('./components/OrderDetails.vue'));
+Vue.component('notification', require('./components/notification.vue'));
+Vue.component('customer-search', require('./components/customer-search.vue'));
+Vue.component('order-details', require('./components/order-details.vue'));
+Vue.component('item', require('./components/item.vue'));
+Vue.component('order', require('./components/order.vue'));
 
 const app = new Vue({
     el: '#app',
+
     data: {
-    	searched: false,
-    	phone: '',
-    	error: '',
-    	success: '',
-    	loading: false,
-    	customer: Object,
-    	current: 'customer-details'
+        customer: Object,
+        step: 1,
+        order: []
     },
 
     methods: {
-    	clear: function(){
-    		$('#customerDetails').trigger('reset');
-    	},
+        setCustomer(customer){
+            this.customer = customer;
+        },
 
-    	search: function(){
-    		this.loading = true;
-    		this.error = '';
-    		this.success = '';
-    		this.clear();
-    		
+        setStep(step){
+            this.step = step;
+        },
 
-    		var self = this;
-    		$.getJSON('/api/searchCustomer?q='+this.phone, function(data){
-    			self.loading = false;
-    			self.searched = true;
-
-
-    			if(data.error){
-    				self.error = data.error;
-    			}
-
-    			if(data.customer){
-    				self.customer = data.customer;
-    				self.success = data.success;
-    			}
-    			
-    		});
-    	},
-
-    	update: function(current){
-    		this.current = current;
-    	}
+        addToOrder(item){
+            this.order.push({item: item});
+        }
     }
 });

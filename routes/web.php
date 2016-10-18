@@ -14,4 +14,6 @@ Route::get('/', function(){
 
 Route::get('/orders', 'OrdersController@index');
 Route::get('/orders/create', 'OrdersController@create');
+
 Route::get('/api/searchCustomer', 'ApiSearchController@searchCustomer');
+Route::get('/api/searchItems', 'ApiSearchController@searchItems');

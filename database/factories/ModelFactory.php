@@ -27,11 +27,24 @@ $factory->define(App\Customer::class, function (Faker\Generator $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'phone' => $faker->phoneNumber,
+        'phone' => $faker->tollFreePhoneNumber,
         'email' => $faker->email,
+
+        'card_number' => $faker->creditCardNumber,
+        'exp_date' => $faker->creditCardExpirationDateString,
+        'cvc' => $faker->numberBetween(100, 999),
+
         'street' => $faker->streetAddress,
         'suburb' => $faker->state,
         'city' => $faker->city,
         'zip' => $faker->postcode,
+    ];
+});
+
+$factory->define(App\Item::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->word,
+        'description' => $faker->paragraph($nb = 3, $asText = false),
+        'price' => $faker->randomNumber(2)
     ];
 });
