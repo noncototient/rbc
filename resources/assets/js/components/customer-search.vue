@@ -22,51 +22,51 @@
 			<label class="label">Customer Name</label>
 			<div class="control is-grouped">
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="First Name" :value="customer.first_name">
+					<input class="input is-medium" type="text" placeholder="First Name" v-model="customer.first_name">
 				</p>
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Last Name" :value="customer.last_name">
+					<input class="input is-medium" type="text" placeholder="Last Name" v-model="customer.last_name">
 				</p>
 			</div>
 
 			<label class="label">Contact Details</label>
 			<div class="control is-grouped">
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Phone Number"  :value="customer.phone">
+					<input class="input is-medium" type="text" placeholder="Phone Number"  v-model="customer.phone">
 				</p>
 				<p class="control is-expanded">
-					<input class="input is-medium" type="email" placeholder="Email" :value="customer.email">
+					<input class="input is-medium" type="email" placeholder="Email" v-model="customer.email">
 				</p>
 			</div>
 
 			<label class="label">Payment Details</label>
 			<div class="control is-grouped">
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Card Number" :value="customer.card_number">
+					<input class="input is-medium" type="text" placeholder="Card Number" v-model="customer.card_number">
 				</p>
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Expiry Date" :value="customer.exp_date">
+					<input class="input is-medium" type="text" placeholder="Expiry Date" v-model="customer.exp_date">
 				</p>
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="CVC" :value="customer.cvc">
+					<input class="input is-medium" type="text" placeholder="CVC" v-model="customer.cvc">
 				</p>
 			</div>
 
 			<label class="label">Address Details</label>
 			<div class="control is-grouped">
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Street" :value="customer.street">
+					<input class="input is-medium" type="text" placeholder="Street" v-model="customer.street">
 				</p>
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Suburb" :value="customer.suburb">
+					<input class="input is-medium" type="text" placeholder="Suburb" v-model="customer.suburb">
 				</p>
 			</div>
 			<div class="control is-grouped">
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="City" :value="customer.city">
+					<input class="input is-medium" type="text" placeholder="City" v-model="customer.city">
 				</p>
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Postal Code" :value="customer.zip">
+					<input class="input is-medium" type="text" placeholder="Postal Code" v-model="customer.zip">
 				</p>
 			</div>
 			<button class="button is-primary is-medium" @click="next()">Confirm and Continue <span class="icon"><i class="fa fa-check"></i></span></button>
@@ -86,8 +86,22 @@
 				error: false,
 				success: false,
 				response: '',
-				customer: Object, 
-				showCustomerDetails: false
+				showCustomerDetails: false,
+				// Customer details are populated from the form if a customer is found
+
+				customer: {
+					first_name: '',
+					last_name: '',
+					phone: '',
+					email: '',
+					card_number: '',
+					exp_date: '',
+					cvc: '',
+					street: '',
+					suburb: '',
+					city: '',
+					zip: ''
+				}
 			}
 		},
 
@@ -100,15 +114,15 @@
 						this.success = false;
 						this.error = true;
 						this.showCustomerDetails = true;
-						this.customer = Object;
+						for (var member in this.customer) this.customer[member] = '';
 					}
 
 					if(response.success){
 						this.response = response.success;
 						this.error = false;
 						this.success = true;
-						this.customer = response.customer;
 						this.showCustomerDetails = true;
+						this.customer = response.customer;
 					}
 				});
 			},
@@ -119,7 +133,7 @@
 
 			next(){
 				this.save();
-				// Set a current component
+				// Set current component to order details
 				this.$emit('next', 2);
 			}
 		}

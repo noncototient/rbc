@@ -4386,6 +4386,16 @@ body {
   padding-right: 10px;
   opacity: 0; }
 
+#app .item {
+  display: -webkit-box !important;
+  display: flex !important;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center; }
+  #app .item #increment-btn, #app .item #decrement-btn {
+    margin: auto; }
+
 #create-order {
   margin-top: 50px; }
 

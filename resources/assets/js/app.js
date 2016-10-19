@@ -18,6 +18,7 @@ Vue.component('customer-search', require('./components/customer-search.vue'));
 Vue.component('order-details', require('./components/order-details.vue'));
 Vue.component('item', require('./components/item.vue'));
 Vue.component('order', require('./components/order.vue'));
+Vue.component('customer', require('./components/customer.vue'));
 
 const app = new Vue({
     el: '#app',
@@ -37,8 +38,40 @@ const app = new Vue({
             this.step = step;
         },
 
+        checkIfExists(item){
+            var exists = false, index = 0;
+            if(this.order.length){
+                for (var member in this.order){
+                    if(this.order[member].item == item){
+                        exists = true;
+                        index = member;
+                    }
+                }
+            }
+
+            return {
+                'exists': exists, 
+                'index': index
+            };
+        },
+
         addToOrder(item){
-            this.order.push({item: item});
+            var check = this.checkIfExists(item);
+            if(check.exists){
+                this.order[check.index].item = item;
+            } else {
+                this.order.push({item: item});
+            }
+        },
+
+        removeFromOrder(item){
+            var check = this.checkIfExists(item.item);
+            if(!check.exists){
+                alert('Critical error. Reloading page.')
+                location.reload(true);
+                return;
+            }
+            this.order.splice(check.index, 1);
         }
     }
 });

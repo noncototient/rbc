@@ -25,21 +25,6 @@
 				</ul>
 				<notification v-else type="warning">You have not searched for any items yet. When you do, they will appear here.</notification>
 			</div>
-
-			<div class="box">
-				<div class="container">
-					<button 
-						class="button is-primary is-medium" 
-						@click="next()">
-
-						Confirm and Continue 
-
-						<span class="icon">
-							<i class="fa fa-check"></i>
-						</span>
-					</button>
-				</div>
-			</div>
 		</div>
 	</div>
 

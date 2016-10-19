@@ -10,7 +10,7 @@
                     {{ csrf_field() }}
                     <label class="label">Your Email</label>
                     <p class="control">
-                      <input id="email" type="email" class="input" name="email" value="{{ old('email') }}" required autofocus>
+                      <input id="email" type="email" class="input is-medium" name="email" value="{{ old('email') }}" required autofocus>
                   </p>
                   @if ($errors->has('email'))
                   <div class="notification is-danger">
@@ -20,7 +20,7 @@
 
                 <label class="label">Password</label>
                 <p class="control">
-                    <input id="password" type="password" class="input" name="password" required>                </p>
+                    <input id="password" type="password" class="input is-medium" name="password" required>                </p>
                     @if ($errors->has('password'))
                     <div class="notification is-danger">
                         {{ $errors->first('password') }}
@@ -35,10 +35,10 @@
                 </p>
 
                 <p class="control">
-                    <button type="submit" class="button is-primary">
+                    <button type="submit" class="button is-primary is-medium">
                         Login
                     </button>
-                    <a class="button is-link" href="{{ url('/password/reset') }}">
+                    <a class="button is-link is-medium" href="{{ url('/password/reset') }}">
                         Forgot Your Password?
                     </a>
                 </p>
