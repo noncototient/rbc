@@ -1,21 +1,21 @@
 <template>
-	<div>
+	<div id="order-details">
 		<div v-if="total" >
 			<p class="title">
-				Order Total: <b>${{total}}</b>
+				<i class="fa fa-list-alt" aria-hidden="true"></i> Order Total: <b>${{total}}</b>
 				<hr>
 			</p>
 		</div>
 		
 		<div v-if="items.length">
-			<table class="table is-bordered" >
+			<table class="table is-bordered is-striped is-narrow" >
 				<thead>
 					<tr>
 						<th>Name</th>
 						<th>Quantity</th>
 						<th>Price</th>
 						<th>Total</th>
-						<th></th>
+						<th>Action</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -38,19 +38,19 @@
 		<hr>
 		<p class="control">
 			<label class="radio">
-				<input type="radio" name="question">
+				<input type="radio" name="type" value="takeaway" v-model="type" v-on:change="change()">
 				Takeaway
 			</label>
 			<label class="radio">
-				<input type="radio" name="question">
+				<input type="radio" name="type" value="delivery" v-model="type" v-on:change="change()">
 				Delivery
 			</label>
 		</p>
 		<button 
-		class="button is-primary is-medium is-fullwidth" 
-		@click="next()">
+		class="button is-primary is-medium is-fullwidth" :class="{'is-loading': loading}"
+		@click="finish()">
 
-		Confirm and Continue 
+		Finish 
 
 		<span class="icon">
 			<i class="fa fa-check"></i>
@@ -69,6 +69,14 @@
 
 		props: ['items'],
 
+		data(){
+			return {
+				type: 'takeaway',
+				total: 0,
+				loading: false,
+			}
+		},
+
 		computed: {
 			total(){
 				var orderTotal = 0, itemTotal = 0;
@@ -83,6 +91,15 @@
 		methods: {
 			remove(item){
 				this.$emit('remove', item)
+			},
+
+			change(){
+				this.$emit('change', this.type);
+			},
+
+			finish(){
+				this.loading = true;
+				this.$emit('finish', this.total);
 			}
 		}
 	}

@@ -15,9 +15,8 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('customer_id')->unsigned();
             $table->double('amount');
-            $table->enum('type', ['delivery', 'takeaway']);
+            $table->enum('type', ['delivery', 'takeaway'])->default('takeaway');
             $table->timestamps();
         });
     }

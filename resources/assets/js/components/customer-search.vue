@@ -6,8 +6,9 @@
 
 		<div class="box">
 			<h2 class="title is-5">Search for customer</h2>
-			<p class="control has-addons">
+			<p class="control has-addons has-icon has-icon-left">
 				<input class="input is-medium is-expanded" v-model="customerPhone" type="text" placeholder="Type customer phone number">
+				<i class="fa fa-mobile"></i>
 				<b class="button is-primary is-medium" @click.prevent="searchCustomer()">
 					Search
 					<span class="icon">

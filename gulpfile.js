@@ -14,6 +14,8 @@ require('laravel-elixir-vue-2');
  */
 
 elixir(mix => {
-    mix.sass(['app.sass', 'global.sass', 'pages/*.sass'])
+	mix.copy('./node_modules/sweetalert/dist/sweetalert.css', 'resources/assets/sass/lib');
+
+    mix.sass(['app.sass', 'global.sass', 'lib/*.css', 'pages/*.sass'])
        .webpack('app.js');
 });

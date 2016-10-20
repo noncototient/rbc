@@ -1,4 +1,5 @@
 import Chart from 'chart.js';
+import Alert from 'sweetalert';
 /**
  * First we will load all of this project's JavaScript dependencies which
  * include Vue and Vue Resource. This gives a great starting point for
@@ -26,7 +27,9 @@ const app = new Vue({
     data: {
         customer: Object,
         step: 1,
-        order: []
+        order: [],
+        total: 0,
+        type: 'takeaway'
     },
 
     methods: {
@@ -72,6 +75,43 @@ const app = new Vue({
                 return;
             }
             this.order.splice(check.index, 1);
+        },
+
+        changeOrderType(type){
+            this.type = type;
+        },
+
+        setTotal(total){
+            this.total = total;
+        },
+
+        processOrder(total){
+            this.setTotal(total);
+            console.log(this.$data)
+            this.$http.post('/api/processOrder', {data: this.$data}).then((response) => {
+                // success
+                console.log(response);
+                swal({
+                    title: "Good Job!", 
+                    text: "Other has been successfully processed!", 
+                    type: "success",
+                    showCancelButton: true,
+                    cancelButtonText: "View All Orders",
+                    confirmButtonText: "Create New Order",
+                },
+                (isConfirm)=> {
+                    if(isConfirm){
+                        location.reload(true); // Reload page from the server (true <-- reload from server)
+                    } else {
+                        window.location = '/orders';
+                    }
+                });
+                // Display success message with options to view all orders or start again
+            }, (response) => {
+                // error
+                console.log(response)          
+                sweetAlert("Oops...", "This order couldn't be processed due to an error. Please try again later.", "error");  
+            });
         }
     }
 });

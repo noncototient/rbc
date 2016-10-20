@@ -4,36 +4,50 @@
             <a class="nav-item is-brand" href="#">
                 <img src="/img/logo.png" alt="Logo">
             </a>
+            @unless(Auth::guest())
+            <a class="nav-item" href="/orders">
+                All Orders
+            </a>
+            <a class="nav-item" href="/menu">
+                Menu Items
+            </a>
+            <span class="nav-item">
+                <a href="/orders/create" class="button is-primary is-outlined">
+                    <span>Create Order</span>
+                    <span class="icon"><i style="font-size: 12px;" class="fa fa-plus"></i></span>
+                </a>
+            </span>
+            @endunless
         </div>
 
-        <span class="nav-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </span>
+      <span class="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+    </span>
 
-        <div class="nav-right nav-menu">
+    <div class="nav-right nav-menu">
 
-            <span class="nav-item">
-                @if (Auth::guest())
-                <a class="button is-primary" href="/login">
-                    <span class="icon">
-                        <i class="fa fa-sign-in"></i>
-                    </span>
-                    <span>Login</span>
-                </a>
-                @else
-                Hi, {{ Auth::user()->name }}!
-                <a class="button is-link" href="{{ url('/logout') }}"
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                Logout
+        <span class="nav-item">
+            @if (Auth::guest())
+            <a class="button is-primary" href="/login">
+                <span>Login</span>
+                <span class="icon">
+                    <i class="fa fa-sign-in"></i>
+                </span>
             </a>
-            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-            @endif
-        </span>
-    </div>
+            @else
+            Hi, {{ Auth::user()->name }}!
+            <a class="button is-link" href="{{ url('/logout') }}"
+            onclick="event.preventDefault();
+            document.getElementById('logout-form').submit();">
+            Logout
+        </a>
+        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+            {{ csrf_field() }}
+        </form>
+        @endif
+    </span>
+</div>
 </div>
 </nav>

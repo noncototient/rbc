@@ -9,9 +9,10 @@
                 <form role="form" method="POST" action="{{ url('/login') }}">
                     {{ csrf_field() }}
                     <label class="label">Your Email</label>
-                    <p class="control">
-                      <input id="email" type="email" class="input is-medium" name="email" value="{{ old('email') }}" required autofocus>
-                  </p>
+                    <p class="control has-icon">
+                        <input id="email" type="email" class="input is-medium" name="email" value="{{ old('email') }}" required autofocus>
+                        <i class="fa fa-envelope"></i>
+                    </p>
                   @if ($errors->has('email'))
                   <div class="notification is-danger">
                     {{ $errors->first('email') }}
@@ -19,8 +20,10 @@
                 @endif
 
                 <label class="label">Password</label>
-                <p class="control">
-                    <input id="password" type="password" class="input is-medium" name="password" required>                </p>
+                <p class="control has-icon">
+                    <input id="password" type="password" class="input is-medium" name="password" required>
+                    <i class="fa fa-lock"></i>
+                </p>
                     @if ($errors->has('password'))
                     <div class="notification is-danger">
                         {{ $errors->first('password') }}

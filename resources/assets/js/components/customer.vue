@@ -1,24 +1,24 @@
 <template>
-	<div>
+	<div id="customer-details">
 		<div class="box">
 			<div v-if="!customer.length">
 				<p class="title">
-					{{customer.first_name}} {{customer.last_name}}
+					<i class="fa fa-user"></i> {{customer.first_name}} {{customer.last_name}}
 					<hr>
 				</p>
 
-				<h6><b>Contact Details</b></h6>
+				<h6><b><i class="fa fa-at"></i> Contact Details</b></h6>
 				<p>
 					{{customer.email}}
 					{{customer.phone}}
 				</p><br>
 
-				<h6><b>Address Details</b></h6>
+				<h6><b><i class="fa fa-map-marker"></i> Address Details</b></h6>
 				<p>
 					{{customer.street}}, {{customer.suburb}}, {{customer.city}}, {{customer.zip}}
 				</p><br>
 
-				<h6><b>Payment Details</b></h6>
+				<h6><b><i class="fa fa-credit-card"></i> Payment Details</b></h6>
 				<p>
 					<b>Card Number: </b>{{customer.card_number}}<br>
 					<b>Expiry Date: </b>{{customer.exp_date}}<br>
