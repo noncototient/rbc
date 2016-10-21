@@ -25,6 +25,7 @@ composer dump-autoload
 
 echo "Updating environment..."
 mv .env.production .env
+php artisan key:generate
 
 sudo chown -R :www-data /var/www/htdocs/rbc
 sudo chmod -R 777 /var/www/htdocs/rbc/storage

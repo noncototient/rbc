@@ -1,14 +1,14 @@
 <label class="label">Provide Item Details</label>
 <div class="control is-grouped">
 	<p class="control is-expanded">
-		<input class="input is-medium" name="name" type="text" placeholder="Item name" value="{{$item->name ?? ''}}">
+		<input class="input is-medium" name="name" type="text" placeholder="Item name" value="{{isset($item->name) ? $item->name : ''}}">
 	</p>
 	<p class="control">
-		<input class="input is-medium" name="price" type="number" placeholder="Price" value="{{$item->price ?? ''}}">
+		<input class="input is-medium" name="price" type="number" placeholder="Price" value="{{isset($item->price) ? $item->price : ''}}">
 	</p>
 </div>
 <p class="control">
-	<textarea class="textarea is-medium" name="description" placeholder="Item Description">{{$item->description ?? ''}}</textarea>
+	<textarea class="textarea is-medium" name="description" placeholder="Item Description">{{isset($item->description) ? $item->description : ''}}</textarea>
 </p>
 <p class="control">
 	<button class="button is-primary is-medium">
