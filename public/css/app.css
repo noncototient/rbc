@@ -4402,6 +4402,9 @@ body {
 #app #order-details i.fa.fa-list-alt {
   font-size: 28px; }
 
+.tag.margin {
+  margin: 2px 0 !important; }
+
 body.stop-scrolling {
   height: 100%;
   overflow: hidden; }

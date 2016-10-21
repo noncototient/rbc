@@ -11,6 +11,16 @@ class ItemTableSeeder extends Seeder
      */
     public function run()
     {
-        factory('App\Item', 50)->create();
+        // factory('App\Item', 50)->create();
+        DB::table('items')->delete();
+        $json = File::get("database/data/menu.json");
+        $data = json_decode($json);
+        foreach ($data as $obj) {
+            DB::table('items')->insert(array(
+                'name' => $obj->name,
+                'description' => $obj->description,
+                'price' => $obj->price
+            ));
+        }
     }
 }

@@ -1,0 +1,57 @@
+[
+	{
+		"name": "Jalapeno Beef",
+		"description": "Stir fried special seasoned beef with jalapeno",
+		"price": "8"
+	},
+	{
+		"name": "Wagyu Beef",
+		"description": "Wagyu Beef steak with garlic soy sauce",
+		"price": "14"
+	},
+	{
+		"name": "Grilled Chicken Steak",
+		"description": "Grilled Chicken with Ginger miso sauce",
+		"price": "12"
+	},
+	{
+		"name": "Prawn Potato",
+		"description": "Baked potato served with prawn and garlic sauce",
+		"price": "7"
+	},
+	{
+		"name": "Spring Roll (6 pcs)",
+		"description": "Vegetable spring roll",
+		"price": "6"
+	},
+	{
+		"name": "Spring Roll (3 pcs)",
+		"description": "Vegetable spring roll",
+		"price": "4"
+	},
+	{
+		"name": "Chicken Katsu",
+		"description": "Crumbed chicken with Tokunou sauce",
+		"price": "7.5"
+	},
+	{
+		"name": "Kotoboku Caesar Salad",
+		"description": "Caesar salad with chicken served under Kotoboku dressing",
+		"price": "9.5"
+	},
+	{
+		"name": "Coka Cola",
+		"description": "300ml Coca Cola can",
+		"price": "2.5"
+	},
+	{
+		"name": "Coka Cola Diet",
+		"description": "300ml Coca Cola can diet",
+		"price": "2.5"
+	},
+	{
+		"name": "Pepsi",
+		"description": "300ml Pepsi can",
+		"price": "2.5"
+	}
+]

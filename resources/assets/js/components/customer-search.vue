@@ -41,10 +41,10 @@
 			</div>
 
 			<label class="label">Payment Details</label>
+			<p class="control">
+				<input class="input is-medium" type="text" placeholder="Card Number" v-model="customer.card_number">
+			</p>
 			<div class="control is-grouped">
-				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Card Number" v-model="customer.card_number">
-				</p>
 				<p class="control is-expanded">
 					<input class="input is-medium" type="text" placeholder="Expiry Date" v-model="customer.exp_date">
 				</p>
@@ -70,7 +70,7 @@
 					<input class="input is-medium" type="text" placeholder="Postal Code" v-model="customer.zip">
 				</p>
 			</div>
-			<button class="button is-primary is-medium" @click="next()">Confirm and Continue <span class="icon"><i class="fa fa-check"></i></span></button>
+			<button class="button is-primary is-medium is-fullwidth" @click="next()">Confirm and Continue <span class="icon"><i class="fa fa-check"></i></span></button>
 		</div>
 	</div>
 </template>

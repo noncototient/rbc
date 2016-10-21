@@ -7,7 +7,7 @@
 			<div class="box">
 				<h2 class="title is-5">Order Details</h2>
 				<p class="control has-addons has-icon has-icon-left">
-					<input class="input is-medium is-expanded" v-model="itemName" type="text" placeholder="Type item name that you want to add to the order">
+					<input class="input is-medium is-expanded" v-model="itemName" type="text" placeholder="Type item name">
 					<i class="fa fa-cutlery"></i>
 					<b class="button is-primary is-medium" @click.prevent="searchItems()">
 						Search

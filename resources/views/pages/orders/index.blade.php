@@ -13,6 +13,9 @@
 						</a>
 					</h1> 
 					<div class="box">
+						@if($orders->count() == 0)
+							<notification type="warning">There are no orders.</notification>
+						@else
 						<table class="table">
 							<thead>
 								<tr>
@@ -44,14 +47,14 @@
 									</td>
 									<td>
 										<span 
-										class="tag @if(str_is($order->type, 'takeaway')) is-warning @else is-danger @endif">
+										class="tag margin @if(str_is($order->type, 'takeaway')) is-warning @else is-danger @endif">
 										{{ $order->type }}
 									</span>
 								</td>
-								<td class="is-icon">
+								<td>
 									<p>
 										@foreach($order->items as $item)
-										<span class="tag">
+										<span class="tag margin">
 											{{$item->name }}
 										</span>
 										@endforeach
@@ -70,6 +73,7 @@
 							@endforeach
 						</tbody>
 					</table>
+					@endif
 				</div>
 			</div>
 		</div>
@@ -77,13 +81,21 @@
 			<div class="box">
 				<p class="title">Statistics</p>
 				<div class="box">
-					<h3 class="title is-5">
-						Today's Takings
-						<span class="is-pulled-right"><b>${{ $todayTotal }}</b></span>
-					</3>
+					@if($orders->count() == 0)
+						<notification type="warning">There are no orders.</notification>
+					@else
+						<h3 class="title is-5">
+							Today's Takings
+							<span class="is-pulled-right"><b>${{ $todayTotal }}</b></span>
+						</3>
+					@endif
 				</div>
 				<div class="box">
-					<canvas id="myChart" width="400" height="400"></canvas>
+					@if($orders->count() == 0)
+						<notification type="warning">There are no orders.</notification>
+					@else
+						<canvas id="myChart" width="400" height="400"></canvas>
+					@endif
 				</div>
 			</div>
 		</div>

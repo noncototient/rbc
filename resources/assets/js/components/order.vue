@@ -20,7 +20,7 @@
 				</thead>
 				<tbody>
 					<tr v-for="item in items">
-						<td class="has-text-centered"><b>{{item.item.name}}</b></td>
+						<td><b>{{item.item.name}}</b></td>
 						<td class="has-text-centered">{{item.item.amount}}</td>
 						<td class="has-text-centered">${{item.item.price}}</td>
 						<td class="has-text-centered"><b>${{item.item.amount * item.item.price}}</b></td>

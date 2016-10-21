@@ -1,8 +1,8 @@
 <template>
 	<li class="box">
 		<div class="columns">
-			<div class="column item"><img src="https://placehold.it/75x75" alt=""></div>
-			<div class="column has-text-centered item"><p class="title is-5"><b>{{item.name}}</b></p></div>
+			<!-- <div class="column item"><img src="https://placehold.it/75x75" alt=""></div> -->
+			<div class="column has-text-centered item"><p><b>{{item.name}}</b></p></div>
 			<div class="column is-one-third item">{{item.description}}</div>
 			<div class="column has-text-centered item"><p class="title is-5"><b>${{item.price }}</b></p></div>
 			<div class="column has-text-centered item">
