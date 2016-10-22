@@ -9,8 +9,8 @@
 
 				<h6><b><i class="fa fa-at"></i> Contact Details</b></h6>
 				<p>
-					{{customer.email}}
-					{{customer.phone}}
+					<b>Email:</b> {{customer.email}}<br>
+					<b>Phone:</b> {{customer.phone}}
 				</p><br>
 
 				<h6><b><i class="fa fa-map-marker"></i> Address Details</b></h6>

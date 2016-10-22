@@ -19,7 +19,8 @@ class OrdersController extends Controller
 		$totalDelivery = Order::where('type', 'delivery')->count();
 		$totalTakeaway = Order::where('type', 'takeaway')->count();
 		$todayTotal = Order::where('created_at', '>', Carbon::now()->startOfDay())->sum('amount');
-		return view('pages.orders.index', compact('orders', 'totalDelivery', 'totalTakeaway', 'todayTotal'));
+		$todayOrderscount = Order::where('created_at', '>', Carbon::now()->startOfDay())->count();
+		return view('pages.orders.index', compact('orders', 'totalDelivery', 'totalTakeaway', 'todayTotal', 'todayOrderscount'));
 	}
 
 	// Create a new order

@@ -86,7 +86,7 @@
 					@else
 						<h3 class="title is-5">
 							Today's Takings
-							<span class="is-pulled-right"><b>${{ $todayTotal }}</b></span>
+							<span class="is-pulled-right"><b>${{ $todayTotal }} from {{$todayOrderscount}} orders</b></span>
 						</3>
 					@endif
 				</div>

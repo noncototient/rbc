@@ -9,12 +9,12 @@
 				<p class="control has-addons has-icon has-icon-left">
 					<input class="input is-medium is-expanded" v-model="itemName" type="text" placeholder="Type item name">
 					<i class="fa fa-cutlery"></i>
-					<b class="button is-primary is-medium" @click.prevent="searchItems()">
+					<button class="button is-primary is-medium" :class="{'is-disabled' : !isEmptyItemField}" @click.prevent="searchItems()">
 						Search
 						<span class="icon">
 							<span class="fa fa-search"></span>
 						</span>
-					</b>
+					</button>
 				</p>
 			</div>
 
@@ -40,7 +40,14 @@
 		data(){
 			return {
 				items: false,
-				itemName: ''
+				itemName: '',
+				isEmptyItemField: false
+			}
+		},
+
+		computed: {
+			isEmptyItemField(){
+				return this.itemName;
 			}
 		},
 

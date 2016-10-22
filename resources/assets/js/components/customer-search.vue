@@ -7,14 +7,17 @@
 		<div class="box">
 			<h2 class="title is-5">Search for customer</h2>
 			<p class="control has-addons has-icon has-icon-left">
-				<input class="input is-medium is-expanded" v-model="customerPhone" type="text" placeholder="Type customer phone number">
+					<input
+						class="input is-medium is-expanded" 
+						v-model="customerPhone" type="text" 
+						placeholder="Type customer phone number">
 				<i class="fa fa-mobile"></i>
-				<b class="button is-primary is-medium" @click.prevent="searchCustomer()">
+				<button class="button is-primary is-medium" :class="{'is-disabled' : !isEmptyPhoneSearch}" @click.prevent="searchCustomer()">
 					Search
 					<span class="icon">
 						<span class="fa fa-search"></span>
 					</span>
-				</b>
+				</button>
 			</p>
 		</div>
 
@@ -70,7 +73,7 @@
 					<input class="input is-medium" type="text" placeholder="Postal Code" v-model="customer.zip">
 				</p>
 			</div>
-			<button class="button is-primary is-medium is-fullwidth" @click="next()">Confirm and Continue <span class="icon"><i class="fa fa-check"></i></span></button>
+			<button class="button is-primary is-medium is-fullwidth" :class="{'is-disabled' : !isEmptyDetailsForm}" @click="next()">Confirm and Continue <span class="icon"><i class="fa fa-check"></i></span></button>
 		</div>
 	</div>
 </template>
@@ -88,6 +91,8 @@
 				success: false,
 				response: '',
 				showCustomerDetails: false,
+				isEmptyPhoneSearch: true,
+				isEmptyDetailsForm: true,
 				// Customer details are populated from the form if a customer is found
 
 				customer: {
@@ -106,26 +111,43 @@
 			}
 		},
 
+		computed: {
+			isEmptyPhoneSearch(){
+				return this.customerPhone;
+			},
+			isEmptyDetailsForm(){
+				if(this.customer.first_name && this.customer.last_name && this.customer.email && this.customer.phone && this.customer.email && this.customer.card_number && this.customer.exp_date && this.customer.cvc  && this.customer.street && this.customer.suburb && this.customer.city && this.customer.zip){
+					return true;
+				} else {
+					return false;
+				}
+			}
+		},
+
 		methods: {
 			searchCustomer(){
 				$.getJSON('/api/searchCustomer?phone=' + this.customerPhone, (response) => {
 
-					if(response.error){
-						this.response = response.error;
-						this.success = false;
-						this.error = true;
-						this.showCustomerDetails = true;
-						for (var member in this.customer) this.customer[member] = '';
-					}
+					if(this.customerPhone){
+						if(response.error){
+							this.response = response.error;
+							this.success = false;
+							this.error = true;
+							this.showCustomerDetails = true;
+							for (var member in this.customer) this.customer[member] = '';
+						}
 
-					if(response.success){
-						this.response = response.success;
-						this.error = false;
-						this.success = true;
-						this.showCustomerDetails = true;
-						this.customer = response.customer;
+						if(response.success){
+							this.response = response.success;
+							this.error = false;
+							this.success = true;
+							this.showCustomerDetails = true;
+							this.customer = response.customer;
+						}
+					} else {
+						
 					}
-				});
+			});
 			},
 
 			save(){

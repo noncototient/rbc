@@ -11,7 +11,7 @@
 						@if(Session::has('success'))
 							<notification type="success">{{ Session::get('success') }}</notification>
 						@endif
-						<form method="POST" action="/menu/update">
+						<form method="POST" action="/menu/create">
 							{{ csrf_field() }}
 							@include('pages.menu.partials.form')
 						</form>
