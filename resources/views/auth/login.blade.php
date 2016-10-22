@@ -38,13 +38,26 @@
                 </p>
 
                 <p class="control">
-                    <button type="submit" class="button is-primary is-medium">
+                    <button type="submit" class="button is-primary is-medium is-fullwidth">
                         Login
+                        <span class="icon">
+                            <i class="fa fa-sign-in"></i>
+                        </span>
                     </button>
-                    <a class="button is-link is-medium" href="{{ url('/password/reset') }}">
-                        Forgot Your Password?
+                </p>
+                <p class="control">
+                    <a href="/register" type="submit" class="button is-light is-medium is-fullwidth">
+                        Register
+                        <span class="icon">
+                            <i class="fa fa-lock"></i>
+                        </span>
                     </a>
                 </p>
+                {{-- <p class="control">
+                    <a class="button is-link is-medium is-fullwidth" href="{{ url('/password/reset') }}">
+                        Forgot Your Password?
+                    </a>
+                </p> --}}
             </form>
         </div>
     </div>

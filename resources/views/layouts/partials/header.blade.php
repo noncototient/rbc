@@ -2,7 +2,7 @@
     <div class="container">
         <div class="nav-left">
             <a class="nav-item is-brand" href="#">
-                <img src="/img/logo.png" alt="Logo">
+                <img src="/img/logo.jpg" alt="Logo">
             </a>
             @unless(Auth::guest())
             <a class="nav-item" href="/orders">
@@ -34,6 +34,12 @@
                 <span>Login</span>
                 <span class="icon">
                     <i class="fa fa-sign-in"></i>
+                </span>
+            </a>
+            <a class="button is-light" href="/register">
+                <span>Register</span>
+                <span class="icon">
+                    <i class="fa fa-lock"></i>
                 </span>
             </a>
             @else

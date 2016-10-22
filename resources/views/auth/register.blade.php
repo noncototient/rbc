@@ -1,7 +1,76 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+
+<div id="login">
+    <div class="columns">
+        <div class="column is-one-third is-offset-one-third">
+            <div class="box">
+                <p class="title">Register</p>
+                <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
+                    {{ csrf_field() }}
+                    <label class="label">Your Name</label>
+                    <p class="control has-icon">
+                        <input id="name" type="text" class="input is-medium" name="name" value="{{ old('name') }}" required autofocus>
+                        <i class="fa fa-user"></i>
+                        @if ($errors->has('name'))
+                            <div class="notification is-danger">
+                               {{ $errors->first('name') }}
+                            </div>
+                        @endif
+                    </p>
+
+                    <label class="label">Your Email</label>
+                    <p class="control has-icon">
+                        <input id="email" type="email" class="input is-medium" name="email" value="{{ old('email') }}" required>
+                        <i class="fa fa-envelope"></i>
+                        @if ($errors->has('email'))
+                            <div class="notification is-danger">
+                               {{ $errors->first('email') }}
+                            </div>
+                        @endif
+                    </p>
+
+                    <label class="label">Your Password</label>
+                    <p class="control has-icon">
+                        <input id="password" type="password" class="input is-medium" name="password" value="{{ old('password') }}" required>
+                        <i class="fa fa-lock"></i>
+                        @if ($errors->has('password'))
+                            <div class="notification is-danger">
+                               {{ $errors->first('password') }}
+                            </div>
+                        @endif
+                    </p>
+
+                    <label class="label">Confirm Password</label>
+                    <p class="control has-icon">
+                        <input id="password-confirm" type="password" class="input is-medium" name="password_confirmation" required>
+                        <i class="fa fa-lock"></i>
+                    </p>
+
+                    <p class="control">
+                    <button type="submit" class="button is-primary is-medium is-fullwidth">
+                        Register
+                        <span class="icon">
+                            <i class="fa fa-lock"></i>
+                        </span>
+                    </button>
+
+                    <p class="control">
+                    <a href="/login" type="submit" class="button is-link is-medium is-fullwidth">
+                        Have an account? Log in.
+                        <span class="icon">
+                            <i class="fa fa-sign-in"></i>
+                        </span>
+                    </a>
+                </p>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{-- <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
@@ -78,5 +147,5 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 @endsection
