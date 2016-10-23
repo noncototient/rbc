@@ -12,7 +12,7 @@
 						v-model="customerPhone" type="text" 
 						placeholder="Type customer phone number">
 				<i class="fa fa-mobile"></i>
-				<button class="button is-primary is-medium" :class="{'is-disabled' : !isEmptyPhoneSearch}" @click.prevent="searchCustomer()">
+				<button class="button is-primary is-medium" :class="{'is-disabled' : !isEmptyPhoneSearch, 'is-loading' : loading}" @click.prevent="searchCustomer()">
 					Search
 					<span class="icon">
 						<span class="fa fa-search"></span>
@@ -86,6 +86,7 @@
 
 		data() {
 			return {
+				loading: false,
 				customerPhone: '',
 				error: false,
 				success: false,
@@ -126,10 +127,12 @@
 
 		methods: {
 			searchCustomer(){
+				this.loading = true;
 				$.getJSON('/api/searchCustomer?phone=' + this.customerPhone, (response) => {
 
 					if(this.customerPhone){
 						if(response.error){
+							this.loading = false;
 							this.response = response.error;
 							this.success = false;
 							this.error = true;
@@ -138,6 +141,7 @@
 						}
 
 						if(response.success){
+							this.loading = false;
 							this.response = response.success;
 							this.error = false;
 							this.success = true;

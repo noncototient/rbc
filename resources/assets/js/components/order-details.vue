@@ -9,7 +9,7 @@
 				<p class="control has-addons has-icon has-icon-left">
 					<input class="input is-medium is-expanded" v-model="itemName" type="text" placeholder="Type item name">
 					<i class="fa fa-cutlery"></i>
-					<button class="button is-primary is-medium" :class="{'is-disabled' : !isEmptyItemField}" @click.prevent="searchItems()">
+					<button class="button is-primary is-medium" :class="{'is-disabled' : !isEmptyItemField, 'is-loading' : loading}" @click.prevent="searchItems()">
 						Search
 						<span class="icon">
 							<span class="fa fa-search"></span>
@@ -20,10 +20,10 @@
 
 			<div class="box">
 				<h3 class="title is-5">Select Items</h3>
-				<ul v-if="items">
+				<ul v-if="items.length">
 					<item v-for="(item, index) in items" :item="item" :index="index" v-on:add="add"></item>
 				</ul>
-				<notification v-else type="warning">You have not searched for any items yet. When you do, they will appear here.</notification>
+				<notification v-else type="warning">No items found.</notification>
 			</div>
 		</div>
 	</div>
@@ -39,6 +39,7 @@
 
 		data(){
 			return {
+				loading: false,
 				items: false,
 				itemName: '',
 				isEmptyItemField: false
@@ -53,7 +54,9 @@
 
 		methods: {
 			searchItems(){
+				this.loading = true;
 				$.getJSON('/api/searchItems?item=' + this.itemName, (response) => {
+					this.loading = false;
 					this.items = response;
 				});
 			},
