@@ -113,10 +113,13 @@
 		},
 
 		computed: {
+			// Computed property to prevent form submission if nothing is typed in phone search
 			isEmptyPhoneSearch(){
 				return this.customerPhone;
 			},
+			// Computed property to prevent form submission if nothing is typed in customer details form
 			isEmptyDetailsForm(){
+				// I know, no better/quicker way to perform this check :(
 				if(this.customer.first_name && this.customer.last_name && this.customer.email && this.customer.phone && this.customer.email && this.customer.card_number && this.customer.exp_date && this.customer.cvc  && this.customer.street && this.customer.suburb && this.customer.city && this.customer.zip){
 					return true;
 				} else {
@@ -126,11 +129,17 @@
 		},
 
 		methods: {
+			// Method to look up a customer in DB by their phone number
 			searchCustomer(){
-				this.loading = true;
+				// Set the button loading state to true
+				this.loading = true; 
+
+				// Make a json request to the server to retrieve a customer
 				$.getJSON('/api/searchCustomer?phone=' + this.customerPhone, (response) => {
 
+					// Check if customerPhone field is not empty
 					if(this.customerPhone){
+						// If no customer found, display the error to the page and clear customer object
 						if(response.error){
 							this.loading = false;
 							this.response = response.error;
@@ -140,6 +149,7 @@
 							for (var member in this.customer) this.customer[member] = '';
 						}
 
+						// If customer is found, display a success message and assign data to customer object
 						if(response.success){
 							this.loading = false;
 							this.response = response.success;
@@ -149,16 +159,18 @@
 							this.customer = response.customer;
 						}
 					} else {
-						
+						// Skip
 					}
 			});
 			},
 
 			save(){
-				this.$emit('save', this.customer);
+				// Let parent component (app.js) know that save method was called (Vue.js parent-component communication)
+ 				this.$emit('save', this.customer);
 			},
 
 			next(){
+				// Call the save method
 				this.save();
 				// Set current component to order details
 				this.$emit('next', 2);

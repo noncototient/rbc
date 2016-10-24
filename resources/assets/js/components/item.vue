@@ -37,23 +37,27 @@
 			console.log('Component ready.')
 		},
 
+		// Accept item object for this component
 		props: ['item'],
 
 		data(){
 			return {
+				// Initial item quantity
 				quantity: 1,
+				// Initial variable value set to disabled to prevent item quantity being less than 1
 				disabled: true
 			}
 		},
 
 		computed: {
+			// Correspond to 'disabled' data variable
 			disabled(){
-				return this.quantity < 2;
+				return this.quantity < 2; // returns a boolean according to this comparison
 			}
 		},
 
 		methods: {
-
+			// Method to reduce quantity of an item being added to the order
 			decrement(){
 				if(this.quantity < 2){
 					this.disabled = true;
@@ -61,6 +65,7 @@
 				this.quantity--;
 			},
 
+			// Method to increase quantity of an item being added to the order
 			increment(){
 				if(this.quantity > 0){
 					this.disabled = false;
@@ -68,9 +73,15 @@
 				this.quantity++;
 			},
 
+			// Method to add an item to the order object
 			add(){
+				// Append data to the item
 				this.$set(this.item, 'amount', this.quantity);
+				
+				// Let parent component know about this
 				this.$emit('add', this.item);
+
+				// Reset the item quantity back to 1
 				this.quantity = 1;
 			}
 

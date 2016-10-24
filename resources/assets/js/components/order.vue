@@ -89,16 +89,24 @@
 		},
 
 		methods: {
+			// Remove an item from the order
 			remove(item){
+				// Emit the event to the parent component
 				this.$emit('remove', item)
 			},
 
+			// Change the order type (delivery, takeaway)
 			change(){
+				// Emit this action to the parent component
 				this.$emit('change', this.type);
 			},
 
+			// Finish and process the order
 			finish(){
+				// Button loading state
 				this.loading = true;
+
+				// Emit the event to the parent component
 				this.$emit('finish', this.total);
 			}
 		}

@@ -37,6 +37,7 @@
 			console.log('Component ready.')
 		},
 
+		// Set initial reactive data properties
 		data(){
 			return {
 				loading: false,
@@ -47,25 +48,33 @@
 		},
 
 		computed: {
+			// Corresponds to the isEmptyItemField data property
 			isEmptyItemField(){
 				return this.itemName;
 			}
 		},
 
 		methods: {
+			// Method to search for an item based on provided name
 			searchItems(){
+				// Set the button loading state
 				this.loading = true;
+
+				// Make an ajax request to the server to retrieve the items
 				$.getJSON('/api/searchItems?item=' + this.itemName, (response) => {
-					this.loading = false;
-					this.items = response;
+					this.loading = false; // Normal button state
+					this.items = response; // Items array is set to json returned from the server
 				});
 			},
 
-			next(){
-				this.$emit('next', 3);
-			},
+			// This is in the codebase in case the process needs to involve more steps than 2
+			// next(){
+			// 	// Let parent component know the next step
+			// 	this.$emit('next', 3);
+			// },
 
 			add(item){
+				// Let parent component know to add the item to the order object
 				this.$emit('add', item);
 			}
 		}

@@ -15,19 +15,31 @@ class OrdersController extends Controller
 	// Display all orders
 	public function index(){
 		// Fetch all orders to display on the page
-		$orders = Order::orderBy('created_at', 'DESC')->get();
-		$totalDelivery = Order::where('type', 'delivery')->count();
-		$totalTakeaway = Order::where('type', 'takeaway')->count();
+		$orders = Order::orderBy('created_at', 'DESC')->get(); // all orders
+
+		$totalDelivery = Order::where('type', 'delivery')->count(); // count of orders that are delivery |  This is for 
+		$totalTakeaway = Order::where('type', 'takeaway')->count(); // count orders that are takeaway    |  the donut graph
+
+		// Count total takings of orders for today
 		$todayTotal = Order::where('created_at', '>', Carbon::now()->startOfDay())->sum('amount');
-		$todayOrderscount = Order::where('created_at', '>', Carbon::now()->startOfDay())->count();
+		// Count total amount of orders for today
+		$todayOrderscount = Order::where('created_at', '>', Carbon::now()->startOfDay())->count(); 
+
+		// Return the main with data
 		return view('pages.orders.index', compact('orders', 'totalDelivery', 'totalTakeaway', 'todayTotal', 'todayOrderscount'));
 	}
 
 	// Create a new order
 	public function create(){
+		// Show page to create an order (the rest is handled by JS)
 		return view('pages.orders.create');
 	}
 
+	// Method that accepts ajax request with all the order details:
+	// * Order items
+	// * Customer details
+	// * Order type
+	// * Order total
 	public function processOrder(Request $request){
 		// Retrieve initial values
 		$data = $request->get('data');
@@ -36,8 +48,6 @@ class OrdersController extends Controller
 
 		$orderTotal = $data['total'];
 		$orderType = $data['type'];
-
-		// return $data;
 
 		// Find Customer or create if does not exist
 		$customer = Customer::firstOrCreate($customerData);

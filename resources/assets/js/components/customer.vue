@@ -36,6 +36,7 @@
 			console.log('Component ready.')
 		},
 
+		// Accept customer object to display their details
 		props: ['customer']
 	}
 </script>
