@@ -9,7 +9,7 @@
 			<p class="control has-addons has-icon has-icon-left">
 					<input
 						class="input is-medium is-expanded" 
-						v-model="customerPhone" type="text" 
+						v-model="customerPhone" type="number" 
 						placeholder="Type customer phone number">
 				<i class="fa fa-mobile"></i>
 				<button class="button is-primary is-medium" :class="{'is-disabled' : !isEmptyPhoneSearch, 'is-loading' : loading}" @click.prevent="searchCustomer()">
@@ -36,7 +36,7 @@
 			<label class="label">Contact Details</label>
 			<div class="control is-grouped">
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Phone Number"  v-model="customer.phone">
+					<input class="input is-medium" type="number" placeholder="Phone Number"  v-model="customer.phone">
 				</p>
 				<p class="control is-expanded">
 					<input class="input is-medium" type="email" placeholder="Email" v-model="customer.email">
@@ -45,14 +45,14 @@
 
 			<label class="label">Payment Details</label>
 			<p class="control">
-				<input class="input is-medium" type="text" placeholder="Card Number" v-model="customer.card_number">
+				<input class="input is-medium" type="number" placeholder="Card Number" v-model="customer.card_number">
 			</p>
 			<div class="control is-grouped">
 				<p class="control is-expanded">
 					<input class="input is-medium" type="text" placeholder="Expiry Date" v-model="customer.exp_date">
 				</p>
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="CVC" v-model="customer.cvc">
+					<input class="input is-medium" type="number" placeholder="CVC" v-model="customer.cvc">
 				</p>
 			</div>
 
@@ -70,7 +70,7 @@
 					<input class="input is-medium" type="text" placeholder="City" v-model="customer.city">
 				</p>
 				<p class="control is-expanded">
-					<input class="input is-medium" type="text" placeholder="Postal Code" v-model="customer.zip">
+					<input class="input is-medium" type="number" placeholder="Postal Code" v-model="customer.zip">
 				</p>
 			</div>
 			<button class="button is-primary is-medium is-fullwidth" :class="{'is-disabled' : !isEmptyDetailsForm}" @click="next()">Confirm and Continue <span class="icon"><i class="fa fa-check"></i></span></button>
@@ -84,6 +84,7 @@
 			console.log('Component ready.')
 		},
 
+		// Initial reactive variables
 		data() {
 			return {
 				loading: false,
@@ -94,8 +95,8 @@
 				showCustomerDetails: false,
 				isEmptyPhoneSearch: true,
 				isEmptyDetailsForm: true,
+				
 				// Customer details are populated from the form if a customer is found
-
 				customer: {
 					first_name: '',
 					last_name: '',
